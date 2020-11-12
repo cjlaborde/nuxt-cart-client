@@ -37,7 +37,9 @@ export default {
   ],
 
   // Axios module configuration (https://go.nuxtjs.dev/config-axios)
-  axios: {},
+  axios: {
+    baseURL: 'http://cart-api.test/api'
+  },
 
   // Build Configuration (https://go.nuxtjs.dev/config-build)
   build: {
