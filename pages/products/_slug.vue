@@ -21,8 +21,7 @@
             </span> -->
 
             <span class="tag is-rounded is-medium">
-              <!-- {{ product.price }} -->
-              Product price
+              {{ product.price }}
             </span>
           </section>
         </div>
