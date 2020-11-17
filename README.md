@@ -20,3 +20,4 @@ belongs to that category.
 3. will be iterated over every single type of variation ex whole beans coffee
 4. Will also trigger an event when user selects a variation
 5. Then have separate for te quantity
+6. Now when you select a different Coffee it will remove the past variation selection.
