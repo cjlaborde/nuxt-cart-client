@@ -24,6 +24,17 @@
               {{ product.price }}
             </span>
           </section>
+
+          <section class="section">
+            <form action="">
+              <ProductVariation 
+                v-for="(variations, type) in product.variations"
+                :type="type"
+                :variations="variations"
+                :key="type"
+              />
+            </form>
+          </section>
         </div>
       </div>
     </div>
@@ -40,7 +51,6 @@ export default {
   // params from the url
   async asyncData({ params, app }) {
     let response = await app.$axios.$get(`products/${params.slug}`);
-
     return {
       product: response.data,
     };

@@ -13,3 +13,10 @@ belongs to that category.
 6. However when we get to the point where we try to filter by category
 7. When we load in product coffee this will go ahead and do an ajax request
 8. To our endpoint that is where cors comes in.
+
+### Showing product variations
+1. products/_slug.vue
+2. Create component <ProductVariation />
+3. will be iterated over every single type of variation ex whole beans coffee
+4. Will also trigger an event when user selects a variation
+5. Then have separate for te quantity
