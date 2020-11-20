@@ -21,3 +21,7 @@ belongs to that category.
 4. Will also trigger an event when user selects a variation
 5. Then have separate for te quantity
 6. Now when you select a different Coffee it will remove the past variation selection.
+
+### Showing if a variation is out of stock
+1. disable out of stock products
+2. As well put notice item is out of stock
