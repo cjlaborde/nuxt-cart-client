@@ -4,8 +4,7 @@
 1. `npm install sass-loader node-sass --save-dev`
 
 ### Showing products in categories
-1. Now we got cors setup and categories we can filter by and grab product that
-belongs to that category.
+1. Now we got cors setup and categories we can filter by and grab product that belongs to that category.
 2. Now we implement in the front end to grab the correct products based on category.
 3. Reason why http://localhost:3000/products/nike-air-max works is
 4. because without having to introduce cors within nuxt it runs on nuxt.js
@@ -25,3 +24,5 @@ belongs to that category.
 ### Showing if a variation is out of stock
 1. disable out of stock products
 2. As well put notice item is out of stock
+
+### Updating dropdown with stock count
