@@ -34,7 +34,32 @@ export default {
     '@nuxtjs/bulma',
     // https://go.nuxtjs.dev/axios
     '@nuxtjs/axios',
+    // https://auth.nuxtjs.org/
+    '@nuxtjs/auth'
   ],
+
+  auth: {
+    strategies: {
+      local: {
+        endpoints: {
+          login: {
+            url: 'auth/login',
+            method: 'post',
+            // where token is comming from
+            // when user sign in i api we wrap the token in that meta.token
+            propertyName: 'meta.token'
+          },
+          user: {
+            url: 'auth/me',
+            method: 'get',
+            // inside of data all the user information is temporally stored
+            propertyName: 'data'
+          }
+        }
+      }
+    }
+  },
+
 
   // Axios module configuration (https://go.nuxtjs.dev/config-axios)
   axios: {

@@ -26,3 +26,10 @@
 2. As well put notice item is out of stock
 
 ### Updating dropdown with stock count
+
+### Authenticating on the client
+1. https://auth.nuxtjs.org/
+2. https://github.com/nuxt-community/auth-module
+3. npm install @nuxtjs/auth
+4. 
+
