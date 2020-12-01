@@ -35,4 +35,7 @@
 ### Updating the navigation
 1. you can access the store anywhere for auth using $auth
 2. Now if you want to log out you can do so by going to Application and delete Local Storage and Cookies
+   
+### Getting the cart for every request
+1. We create new store to keep all cart related in it.
 
