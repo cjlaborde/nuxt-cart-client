@@ -42,3 +42,6 @@
 ### Building the cart page
 
 ### Deleting cart items
+
+
+### Updating cart item quantities

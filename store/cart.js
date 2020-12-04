@@ -27,11 +27,18 @@ export const actions = {
 
         return response
     },
+
     async destroy({ dispatch }, productId) {
         let response = await this.$axios.$delete(`cart/${productId}`)
 
         dispatch('getCart')
+    },
 
+    async update({ dispatch }, { productId, quantity }) {
+        let response = await this.$axios.$patch(`cart/${productId}`, {
+            quantity
+        })
 
+        dispatch('getCart')
     }
 }
