@@ -40,3 +40,5 @@
 1. We create new store to keep all cart related in it.
 
 ### Building the cart page
+
+### Deleting cart items
