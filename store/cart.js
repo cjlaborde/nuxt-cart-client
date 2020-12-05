@@ -1,5 +1,6 @@
 export const state = () => ({
-    products: []
+    products: [],
+    empty: true
 })
 
 export const getters = {
@@ -9,12 +10,20 @@ export const getters = {
 
     count(state) {
         return state.products.length
+    },
+    // check if cart is empty
+    empty(state) {
+        return state.empty
     }
 }
 
 export const mutations = {
     SET_PRODUCTS(state, products) {
         state.products = products
+    },
+
+    SET_EMPTY(state, empty) {
+        state.empty = empty
     }
 }
 
@@ -24,6 +33,7 @@ export const actions = {
 
         // you can look in postman to see the data we want to add
         commit('SET_PRODUCTS', response.data.products)
+        commit('SET_EMPTY', response.meta.empty)
 
         return response
     },

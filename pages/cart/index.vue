@@ -5,14 +5,15 @@
         <div class="column is-three-quarters">
           <h1 class="title is-4">Your cart</h1>
 
-          <article class="message">
+          <article class="message" v-if="products.length">
             <CartOverview />
           </article>
-          <p>
+          <p v-else>
             Your cart is empty
           </p>
 
           <nuxt-link
+          v-if="!empty"
             :to="{ name: 'checkout' }"
             class="button is-fullwidth is-info is-medium"
           >
@@ -25,5 +26,13 @@
 </template>
 
 <script>
-export default {};
+import { mapGetters } from "vuex";
+export default {
+  computed: {
+    ...mapGetters({
+      empty: "cart/empty",
+      products: "cart/products",
+    }),
+  },
+};
 </script>

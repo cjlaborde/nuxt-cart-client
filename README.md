@@ -45,3 +45,5 @@
 
 
 ### Updating cart item quantities
+
+### Disabling the checkout button
