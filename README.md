@@ -47,3 +47,5 @@
 ### Updating cart item quantities
 
 ### Disabling the checkout button
+
+### Showing the cart subtotal
