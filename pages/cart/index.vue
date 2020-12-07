@@ -5,6 +5,8 @@
         <div class="column is-three-quarters">
           <h1 class="title is-4">Your cart</h1>
 
+        Cart Changed: {{ changed }}
+
           <article class="message" v-if="products.length">
             <CartOverview />
           </article>
@@ -32,6 +34,7 @@ export default {
     ...mapGetters({
       empty: "cart/empty",
       products: "cart/products",
+      changed: "cart/changed",
     }),
   },
 };

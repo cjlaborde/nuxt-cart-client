@@ -49,3 +49,6 @@
 ### Disabling the checkout button
 
 ### Showing the cart subtotal
+
+### Getting changed status on the client
+
