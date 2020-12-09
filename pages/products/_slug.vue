@@ -26,7 +26,7 @@
           </section>
 
           <section class="section">
-            <form action="">
+            <form action="" @submit.prevent="add">
               <ProductVariation 
                 v-for="(variations, type) in product.variations"
                 :type="type"
@@ -34,7 +34,6 @@
                 :key="type"
                 v-model="form.variation"
               />
-              {{ form }}
 
               <div class="field has-addons" v-if="form.variation">
                 <div class="control">
@@ -59,6 +58,8 @@
 </template>
 
 <script>
+import { mapActions } from "vuex";
+
 export default {
   data() {
     return {
@@ -73,6 +74,31 @@ export default {
     // set default value when we switch to a variation that has less stock than currently selected
     "form.variation"() {
       this.form.quantity = 1;
+    },
+  },
+  methods: {
+    ...mapActions({
+      store: "cart/store",
+    }),
+
+    add() {
+      this.store([
+        {
+          id: this.form.variation.id,
+          quantity: this.form.quantity,
+        },
+      ]);
+
+      this.form = {
+        variation: "",
+        quantity: 1,
+      };
+
+      /* Use if you want to redirect to cart after adding an item to chart.
+      this.$router.replace({
+        name: 'cart'
+      });
+      */
     },
   },
   // params from the url

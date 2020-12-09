@@ -53,3 +53,5 @@
 ### Getting changed status on the client
 
 ### Showing the product variation type
+
+### Adding items on the client
