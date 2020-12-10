@@ -17,6 +17,7 @@
             </td>
             <td></td>
           </tr>
+          <slot name="rows" />
       </tbody>
   </table>
 </template>

@@ -55,3 +55,5 @@
 ### Showing the product variation type
 
 ### Adding items on the client
+
+### Building the checkout page
