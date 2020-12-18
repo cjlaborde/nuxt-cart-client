@@ -3,12 +3,9 @@
         <div class="container is-fluid">
             <div class="columns">
                 <div class="column is-three-quarters">
-
-                    <article class="message">
-                        <div class="message-body">
-                            <h1 class="title is-5">Ship to</h1>
-                        </div>
-                    </article>
+                <ShippingAddress 
+                    :addresses="addresses"
+                />
 
                     <article class="message">
                         <div class="message-body">
@@ -27,7 +24,10 @@
                             <div class="select is-fullwidth">
                                 <select>
                                     <option>
-                                        Royal Mail 1st Class
+                                        UPS
+                                    </option>
+                                    <option>
+                                        USPS
                                     </option>
                                 </select>
                             </div>
@@ -101,12 +101,23 @@
 import { mapGetters } from "vuex";
 
 export default {
+  data() {
+    addresses: [];
+  },
   computed: {
     ...mapGetters({
       total: "cart/total",
       products: "cart/products",
       empty: "cart/empty",
     }),
+  },
+
+  async asyncData({ app }) {
+    let addresses = await app.$axios.$get("addresses");
+
+    return {
+      addresses: addresses.data,
+    };
   },
 };
 </script>

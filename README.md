@@ -57,3 +57,5 @@
 ### Adding items on the client
 
 ### Building the checkout page
+
+### Showing the default address
