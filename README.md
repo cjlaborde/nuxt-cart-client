@@ -59,3 +59,16 @@
 ### Building the checkout page
 
 ### Showing the default address
+
+### Switching the shipping address
+1. alternative code: Better way instead is using addressSelected method instead
+```js
+  /*
+  watch: {
+    // will switch out from selecting address menu after you choose new address
+    selectedAddress() {
+      this.selecting = false;
+    },
+  },
+  */
+ ```
