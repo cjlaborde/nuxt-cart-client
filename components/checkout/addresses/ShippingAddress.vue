@@ -51,6 +51,13 @@ export default {
       selectedAddress: null,
     };
   },
+
+  watch: {
+    selectedAddress(address) {
+      this.$emit("input", address.id);
+    },
+  },
+
   props: {
     addresses: {
       required: true,

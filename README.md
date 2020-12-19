@@ -88,3 +88,24 @@
     </option>
   </select>
 ```
+
+### Using v-model with a shipping address
+1. We can use v-model on a component itself
+2. What we can do is in ShippingAddress watch for selectedAddress 
+3. then emit the fact that we want to update and use that particular value
+4. What this will archieve is allow us to use v-model within this component
+5. You can do this creating a watch in ShippingAddress and watch selectedAddress
+```php
+  watch: {
+    selectedAddress(address) {
+      this.$emit("input", address.id);
+    },
+  },
+```
+6. Then v-model will be able to listen to it
+```php
+         <ShippingAddress 
+                    :addresses="addresses"
+                    v-model="form.address_id"
+                />
+```

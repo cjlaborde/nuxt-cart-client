@@ -3,8 +3,11 @@
         <div class="container is-fluid">
             <div class="columns">
                 <div class="column is-three-quarters">
+                    {{ form }}
+                    <!-- v-model here is just syntax sugar to listen what the event says -->
                 <ShippingAddress 
                     :addresses="addresses"
+                    v-model="form.address_id"
                 />
 
                     <article class="message">
@@ -102,7 +105,12 @@ import { mapGetters } from "vuex";
 
 export default {
   data() {
-    addresses: [];
+    return {
+      addresses: [],
+      form: {
+        address_id: null,
+      },
+    };
   },
   computed: {
     ...mapGetters({
