@@ -1,5 +1,7 @@
 <template>
   <form action="#" @submit.prevent="store">
+      <!-- used to debug and see on page data you adding -->
+      {{ form }} 
     <div class="field">
       <label class="label">Name</label>
       <div class="control">
@@ -35,9 +37,7 @@
           <label class="label">Country</label>
           <div class="control">
             <div class="select is-fullwidth">
-                <select v-model="form.country_id">
-                    <option value="1">Afganistan</option>
-                </select>
+                <CountryDropdown v-model="form.country_id" />
             </div>
           </div>
         </div>

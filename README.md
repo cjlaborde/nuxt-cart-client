@@ -74,3 +74,17 @@
  ```
 
  ### Creating a new shipping address
+
+ ### Country dropdown selector
+1. Pass Id to 
+```js
+ <CountryDropdown v-model="form.country_id" />
+ ```
+ 2. using a emit
+```html
+  <select @change="changed">
+    <option :value="country.id" v-for="country in countries" :key="country.id">
+        {{ country.name }}
+    </option>
+  </select>
+```
