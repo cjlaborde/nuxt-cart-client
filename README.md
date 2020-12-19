@@ -109,3 +109,6 @@
                     v-model="form.address_id"
                 />
 ```
+
+### Outputting available shipping methods
+
