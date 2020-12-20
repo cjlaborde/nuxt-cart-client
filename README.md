@@ -112,3 +112,8 @@
 
 ### Outputting available shipping methods
 
+### Displaying shipping price and total at checkout
+1. We going to store our shipping method that we choosen inside of our store, so we can send it accross
+2. We using computed property in checkout/index.vue is because to update your store as if it was a peace of data of your component hook up with the model, you need to use computed property for this.
+3. `npm install query-string`
+4. Now it will grab shipping method and pass it down when you select new address

@@ -25,8 +25,8 @@
                                 Shipping
                             </h1>
                             <div class="select is-fullwidth">
-                                <select>
-                                    <option v-for="shipping in shippingMethods" :key="shipping.id" :value="shipping.id">
+                                <select v-model="shippingMethodId">
+                                     <option v-for="shipping in shippingMethods" :key="shipping.id" :value="shipping.id">
                                         {{ shipping.name }} ({{ shipping.price }})
                                     </option>
                                 </select>
@@ -48,7 +48,7 @@
                                             Shipping
                                         </td>
                                         <td>
-                                            $0.00
+                                            {{ shipping.price }}
                                         </td>
                                         <td></td>
                                     </tr>
@@ -98,7 +98,7 @@
 </template>
 
 <script>
-import { mapGetters } from "vuex";
+import { mapGetters, mapActions } from "vuex";
 
 export default {
   data() {
@@ -107,14 +107,20 @@ export default {
       shippingMethods: [],
       form: {
         address_id: null,
-        shipping_method_id: null,
       },
     };
   },
 
   watch: {
     "form.address_id"(addressId) {
-      this.getShippingMethodsForAddress(addressId);
+      this.getShippingMethodsForAddress(addressId).then(() => {
+        // display the first result from shipping methods
+        this.setShipping(this.shippingMethods[0]);
+      });
+    },
+
+    shippingMethodId() {
+      this.getCart();
     },
   },
 
@@ -123,14 +129,40 @@ export default {
       total: "cart/total",
       products: "cart/products",
       empty: "cart/empty",
+      shipping: "cart/shipping",
     }),
+
+    shippingMethodId: {
+      // this.shipping will be getter from our store
+      get() {
+        return this.shipping ? this.shipping.id : "";
+      },
+      // method we created on vuex store cart.js
+      // this.setShipping(this.shippingMethodId);
+      set(shippingMethodId) {
+        // console.log(shippingMethodId);
+        // Inside here pass the shipping object
+        this.setShipping(
+          // will return object that should be that shipping method id
+          // Then we will be able to get it back with get() once is it set
+          this.shippingMethods.find((s) => s.id === shippingMethodId)
+        );
+      },
+    },
   },
 
   methods: {
+    ...mapActions({
+      setShipping: "cart/setShipping",
+      getCart: "cart/getCart",
+    }),
     async getShippingMethodsForAddress(addressId) {
       let response = await this.$axios.$get(`addresses/${addressId}/shipping`);
       //   console.log(response);
       this.shippingMethods = response.data;
+
+      // you can chain on even after you winish on the form.address_is
+      return response;
     },
   },
 
