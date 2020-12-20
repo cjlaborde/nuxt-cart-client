@@ -117,3 +117,7 @@
 2. We using computed property in checkout/index.vue is because to update your store as if it was a peace of data of your component hook up with the model, you need to use computed property for this.
 3. `npm install query-string`
 4. Now it will grab shipping method and pass it down when you select new address
+
+
+### Fixing shipping error on checkout
+

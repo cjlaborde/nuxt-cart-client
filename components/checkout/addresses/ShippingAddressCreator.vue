@@ -1,7 +1,7 @@
 <template>
   <form action="#" @submit.prevent="store">
       <!-- used to debug and see on page data you adding -->
-      {{ form }} 
+      <!-- {{ form }}  -->
     <div class="field">
       <label class="label">Name</label>
       <div class="control">

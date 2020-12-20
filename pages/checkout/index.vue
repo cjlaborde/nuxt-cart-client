@@ -40,7 +40,7 @@
                                 Cart summary
                             </h1>
                             <CartOverview>
-                                <template slot=rows>
+                                <template slot=rows v-if="shippingMethodId">
                                     <tr>
                                         <td></td>
                                         <td></td>
