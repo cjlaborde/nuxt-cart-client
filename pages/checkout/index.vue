@@ -73,7 +73,8 @@
                         <div class="message-body">
                             <button 
                                 class="button is-info is-fullwidth is-medium"
-                                :disabled="empty"
+                                :disabled="empty || submitting"
+                                @click.prevent="order"
                             >
                                 Place order
                             </button>
@@ -84,8 +85,9 @@
                     <article class="message">
                         <div class="message-body">
                             <button 
-                                class="button is-info is-fullwidth is-medium"
-                                :disabled="empty"
+                              class="button is-info is-fullwidth is-medium"
+                              :disabled="empty || submitting"
+                              @click.prevent="order"
                             >
                                 Place order
                             </button>
@@ -103,6 +105,9 @@ import { mapGetters, mapActions } from "vuex";
 export default {
   data() {
     return {
+      // We going to use it to not allow user to send submit button more than once
+      // Even through we already have protection via the if statement in store method in the backend since the cart would be empty.
+      submitting: false,
       addresses: [],
       shippingMethods: [],
       form: {
@@ -156,6 +161,29 @@ export default {
       setShipping: "cart/setShipping",
       getCart: "cart/getCart",
     }),
+
+    async order() {
+      this.submitting = true;
+
+      // we can also send user a message when the item they can sudendly went out of stock
+      try {
+        // console.log(this.form);
+        await this.$axios.$post("orders", {
+          ...this.form,
+          shipping_method_id: this.shippingMethodId,
+        });
+
+        // Updates information from the page
+        await this.getCart();
+
+        this.$router.replace({
+          name: "orders",
+        });
+      } catch (e) {
+        //
+      }
+    },
+
     async getShippingMethodsForAddress(addressId) {
       let response = await this.$axios.$get(`addresses/${addressId}/shipping`);
       //   console.log(response);

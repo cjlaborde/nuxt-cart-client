@@ -119,5 +119,20 @@
 4. Now it will grab shipping method and pass it down when you select new address
 
 
-### Fixing shipping error on checkout
+### Fixing shipping error on checkout 
+
+### Placing orders from the checkout
+1. We going to use  submitting: false in checkout/index.vue to not allow user to send submit button more than once
+2. Even through we already have protection via the if statement in store method in the backend since the cart would be empty.
+3. 
+
+
+
+
+
+
+
+
+
+
 
