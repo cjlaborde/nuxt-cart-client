@@ -136,7 +136,14 @@
 3. There is bug that cart doesn't refresh propery that we will fix later. That the quantity of available items in cart is not selected
 4. We can also change stock from 2 to 1 to test what happens as well.
 
-
+### Fixing the quantity UI bug
+1. The causes the value of quantity does not be selected in the checkout when the stock quanity changed to less than available stock.
+2. You can now inspect the element in the browser to see what is causing the problem
+3. The issue seem to be in CartOverviewProduct.vue component where quantity is been updated, but data is not refreshing to reflect that
+4. What we can do is take the data and use a computed property instead that has a get and set
+5. which will always be updated when that value changes
+6. The set( will have the data, while the set() will take the place of the watcher which we will remove.
+7. Now test it by changing stock quantity to 0 from 1 and 2 to 1 to see that now works properly.
 
 
 

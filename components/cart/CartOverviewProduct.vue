@@ -39,25 +39,21 @@
 import { mapActions } from "vuex";
 
 export default {
-  data() {
-    return {
-      quantity: this.product.quantity,
-    };
+  computed: {
+    quantity: {
+      get() {
+        return this.product.quantity;
+      },
+      set(quantity) {
+        this.update({ productId: this.product.id, quantity });
+      },
+    },
   },
+
   props: {
     product: {
       required: true,
       type: Object,
-    },
-  },
-
-  watch: {
-    // automatically update quantity when it changes
-    quantity(quantity) {
-      this.update({
-        productId: this.product.id,
-        quantity,
-      });
     },
   },
 
