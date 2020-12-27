@@ -124,8 +124,17 @@
 ### Placing orders from the checkout
 1. We going to use  submitting: false in checkout/index.vue to not allow user to send submit button more than once
 2. Even through we already have protection via the if statement in store method in the backend since the cart would be empty.
-3. 
 
+### lesson 96: Alerting on checkout changes
+1. We going to test if alert message works by going to stocks table and turning quantity to 0 of the product we have on cart
+2. add a console log to see message that api give up when it shows the error
+```js
+   } catch (e) {
+     console.log(e.response);
+   }
+```
+3. There is bug that cart doesn't refresh propery that we will fix later. That the quantity of available items in cart is not selected
+4. We can also change stock from 2 to 1 to test what happens as well.
 
 
 

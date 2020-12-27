@@ -1,5 +1,6 @@
 <template>
   <div>
+    <TheAlert />   
     <Navigation />
     <Nuxt />
   </div>

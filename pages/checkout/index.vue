@@ -160,6 +160,7 @@ export default {
     ...mapActions({
       setShipping: "cart/setShipping",
       getCart: "cart/getCart",
+      flash: "alert/flash",
     }),
 
     async order() {
@@ -180,8 +181,13 @@ export default {
           name: "orders",
         });
       } catch (e) {
-        //
+        // console.log(e.response);
+        this.flash(e.response.data.message);
+        // refresh cart information
+        this.getCart();
       }
+
+      this.submitting = false;
     },
 
     async getShippingMethodsForAddress(addressId) {
