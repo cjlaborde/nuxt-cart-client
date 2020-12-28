@@ -135,7 +135,7 @@
 ```
 3. There is bug that cart doesn't refresh propery that we will fix later. That the quantity of available items in cart is not selected
 4. We can also change stock from 2 to 1 to test what happens as well.
-
+ 
 ### Fixing the quantity UI bug
 1. The causes the value of quantity does not be selected in the checkout when the stock quanity changed to less than available stock.
 2. You can now inspect the element in the browser to see what is causing the problem
@@ -146,6 +146,41 @@
 7. Now test it by changing stock quantity to 0 from 1 and 2 to 1 to see that now works properly.
 
 ### Order index setup
+
+
+### Listing through orders
+1. We going to slice products so we can limit amount show using a computed products property
+2. A way yo refactor
+```js
+   <span 
+   class="tag is-medium" 
+   :class="{
+       'is-success': this.order.status === 'complete',
+       'is-info': this.order.status === 'processing' || this.order.status === 'pending',
+       'is-danger': this.order.status === 'payment_failed',
+   }"
+   >
+       {{ order.status }}
+   </span>
+```
+3. Into data() property instead
+```js
+  data() {
+    return {
+      maxProducts: 1,
+      statusClasses: {
+        "is-success": this.order.status === "complete",
+        "is-info":
+          this.order.status === "processing" || this.order.status === "pending",
+        "is-danger": this.order.status === "payment_failed",
+      },
+    };
+  },
+  ```
+4. then just use  statusClasses
+```js
+<span class="tag is-medium" :class="statusClasses">
+```
 
 
 
