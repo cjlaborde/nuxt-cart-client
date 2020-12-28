@@ -145,7 +145,7 @@
 6. The set( will have the data, while the set() will take the place of the watcher which we will remove.
 7. Now test it by changing stock quantity to 0 from 1 and 2 to 1 to see that now works properly.
 
-
+### Order index setup
 
 
 
