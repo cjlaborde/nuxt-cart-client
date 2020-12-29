@@ -142,7 +142,7 @@
 3. The issue seem to be in CartOverviewProduct.vue component where quantity is been updated, but data is not refreshing to reflect that
 4. What we can do is take the data and use a computed property instead that has a get and set
 5. which will always be updated when that value changes
-6. The set( will have the data, while the set() will take the place of the watcher which we will remove.
+6. The set( will have the data, while the set() will take the place of the watcher which we will remove. 
 7. Now test it by changing stock quantity to 0 from 1 and 2 to 1 to see that now works properly.
 
 ### Order index setup
@@ -182,8 +182,28 @@
 <span class="tag is-medium" :class="statusClasses">
 ```
 
-
-
-
+### Updating product variations in orders
+1. This is how we have it set up now
+```html
+   <div v-for="product in products" :key="product.id">
+     {{ product }}
+       <a href="">Product 1</a>
+   </div>
+```
+2. We get back from {{ product }}
+```js
+{ "id": 3, "name": "250g", "price": "$0.10", "price_varies": false, "stock_count": 0, "type": "whole bean", "in_stock": false, "product": { "id": 1, "name": "coffee", "slug": "coffee", "description": "delicious coffee", "price": "$0.10", "stock_count": 18, "in_stock": true } } Product 1
+```
+3. We make some changes to also display the product variation we do this by
+```html
+   <div v-for="variation in products" :key="variation.id">
+     {{ variation.product }}
+       <a href="">Product 1</a>
+   </div>
+```
+4. Result we get is that now we have the coffee we also have the type as well.
+```js
+{ "id": 1, "name": "coffee", "slug": "coffee", "description": "delicious coffee", "price": "$0.10", "stock_count": 18, "in_stock": true }
+```
 
 
