@@ -205,5 +205,42 @@
 ```js
 { "id": 1, "name": "coffee", "slug": "coffee", "description": "delicious coffee", "price": "$0.10", "stock_count": 18, "in_stock": true }
 ```
+### Refactoring statuses to dynamic components
+1. Currently is very static
+```html
+      statusClasses: {
+        "is-success": this.order.status === "complete",
+        "is-info":
+          this.order.status === "processing" || this.order.status === "pending",
+        "is-danger": this.order.status === "payment_failed",
+      },
+```
+2. Instead we going to use dynamic components that are rendered base on the name of the component matching the status we have in orders database
 
-
+3. create folder named statuses in order folder in components 
+4. Add file names `OrderStatus-payment_failed.vue` matching the status name.
+5. We have to name them with same structure `OrderStatus-pending.vue`
+6. Replace
+```html
+   <span 
+   class="tag is-medium" 
+   :class="statusClasses"
+   >
+       {{ order.status }}
+   </span>
+```
+7. with 
+```js
+   <component :is="order.status" />
+```
+```js
+export default {
+  components: {
+    payment_failed: OrderStatusPaymentFailed,
+    pending: OrderStatusPending,
+    // processing: OrderStatusProcessing,
+    // completed: OrderStatusCompleted,
+  },
+```
+8. Now the component change dynamically.
+9. This give you a lot more control and you can even pass props with them.
