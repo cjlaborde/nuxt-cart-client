@@ -10,76 +10,72 @@
                     v-model="form.address_id"
                 />
 
-                    <article class="message">
-                        <div class="message-body">
-                            <h1 class="title is-5">Payment</h1>
+                <PaymentMethods 
+                  :payment-methods="paymentMethods" 
+                  v-model="form.payment_method_id" 
+                />
+
+                <article class="message">
+                    <div class="message-body">
+                        <h1 class="title is-5">
+                            Shipping
+                        </h1>
+                        <div class="select is-fullwidth">
+                            <select v-model="shippingMethodId">
+                                  <option v-for="shipping in shippingMethods" :key="shipping.id" :value="shipping.id">
+                                    {{ shipping.name }} ({{ shipping.price }})
+                                </option>
+                            </select>
                         </div>
-                    </article>
-                    <!-- <ShippingAddress :addresses="addresses" v-model="form.address_id" /> -->
+                    </div>
+                </article>
 
-                    <!-- <PaymentMethods :payment-methods="paymentMethods" v-model="form.payment_method_id" /> -->
+                <article class="message" v-if="products.length">
+                    <div class="message-body">
+                        <h1 class="title is-5">
+                            Cart summary
+                        </h1>
+                        <CartOverview>
+                            <template slot=rows v-if="shippingMethodId">
+                                <tr>
+                                    <td></td>
+                                    <td></td>
+                                    <td class="has-text-weight-bold">
+                                        Shipping
+                                    </td>
+                                    <td>
+                                        {{ shipping.price }}
+                                    </td>
+                                    <td></td>
+                                </tr>
 
-                    <article class="message">
-                        <div class="message-body">
-                            <h1 class="title is-5">
-                                Shipping
-                            </h1>
-                            <div class="select is-fullwidth">
-                                <select v-model="shippingMethodId">
-                                     <option v-for="shipping in shippingMethods" :key="shipping.id" :value="shipping.id">
-                                        {{ shipping.name }} ({{ shipping.price }})
-                                    </option>
-                                </select>
-                            </div>
-                        </div>
-                    </article>
+                                <tr>
+                                    <td></td>
+                                    <td></td>
+                                    <td class="has-text-weight-bold">
+                                        Total
+                                    </td>
+                                    <td>
+                                        {{ total }}
+                                    </td>
+                                    <td></td>
+                                </tr>
+                            </template>
+                        </CartOverview>
+                    </div>
+                </article>
 
-                    <article class="message" v-if="products.length">
-                        <div class="message-body">
-                            <h1 class="title is-5">
-                                Cart summary
-                            </h1>
-                            <CartOverview>
-                                <template slot=rows v-if="shippingMethodId">
-                                    <tr>
-                                        <td></td>
-                                        <td></td>
-                                        <td class="has-text-weight-bold">
-                                            Shipping
-                                        </td>
-                                        <td>
-                                            {{ shipping.price }}
-                                        </td>
-                                        <td></td>
-                                    </tr>
-
-                                    <tr>
-                                        <td></td>
-                                        <td></td>
-                                        <td class="has-text-weight-bold">
-                                            Total
-                                        </td>
-                                        <td>
-                                            {{ total }}
-                                        </td>
-                                        <td></td>
-                                    </tr>
-                                </template>
-                            </CartOverview>
-                        </div>
-                    </article>
-
-                    <article class="message">
-                        <div class="message-body">
-                            <button 
-                                class="button is-info is-fullwidth is-medium"
-                                :disabled="empty || submitting"
-                                @click.prevent="order"
-                            >
-                                Place order
-                            </button>
-                        </div>
-                    </article>
+                <article class="message">
+                    <div class="message-body">
+                        <button 
+                            class="button is-info is-fullwidth is-medium"
+                            :disabled="empty || submitting"
+                            @click.prevent="order"
+                        >
+                            Place order
+                        </button>
+                    </div>
+                </article>
                 </div>
                 <div class="column is-one-quarter">
                     <article class="message">
@@ -110,8 +106,10 @@ export default {
       submitting: false,
       addresses: [],
       shippingMethods: [],
+      paymentMethods: [],
       form: {
         address_id: null,
+        payment_method_id: null,
       },
     };
   },
@@ -202,9 +200,11 @@ export default {
 
   async asyncData({ app }) {
     let addresses = await app.$axios.$get("addresses");
+    let paymentMethods = await app.$axios.$get("payment-methods");
 
     return {
       addresses: addresses.data,
+      paymentMethods: paymentMethods.data,
     };
   },
 };

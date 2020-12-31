@@ -244,3 +244,8 @@ export default {
 ```
 8. Now the component change dynamically.
 9. This give you a lot more control and you can even pass props with them.
+
+### Showing and switching payment methods
+1. Been able to switch between Payment methods is very similar to changing address
+2. So we going to copy and reuse a lot of code from Address switching components
+3. Go to browser console on Network then choose XHR and look in Headers for Respond Payload to verify the payment_method_id
