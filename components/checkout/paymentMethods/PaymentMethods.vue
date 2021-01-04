@@ -11,7 +11,10 @@
               />
             </template>
             <template v-else-if="creating">
-              create payment method
+              <PaymentMethodCreator 
+                @cancel="creating = false"
+                @added="created"
+              />
             </template>
             <template v-else>
               <template v-if="selectedPaymentMethod">
@@ -22,7 +25,7 @@
                 <br>
               </template>
               <div class="field is-grouped">
-                <p class="control">
+                <p class="control" v-if="paymentMethods.length">
                   <a href="" class="button is-info" @click.prevent="selecting = true">Change payment method</a>
                 </p>
                 <p class="control">
@@ -78,9 +81,11 @@ export default {
     },
 
     created(paymentMethod) {
+      // push new payment method
       this.localPaymentMethods.push(paymentMethod);
+      // closes
       this.creating = false;
-
+      // switches our PaymentMethod to the new payment method
       this.switchPaymentMethod(paymentMethod);
     },
   },

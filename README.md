@@ -249,3 +249,10 @@ export default {
 1. Been able to switch between Payment methods is very similar to changing address
 2. So we going to copy and reuse a lot of code from Address switching components
 3. Go to browser console on Network then choose XHR and look in Headers for Respond Payload to verify the payment_method_id
+
+### Storing a new card with Stripe
+1. Added https://js.stripe.com/v3/ to Nuxt.config.js
+2. Clear out all payment_methods we have in database. Left click table > tools > truncate.
+3. Select Restart Identity and Cascade
+4. Go to user table and delete gateway_customer_id
+5. Hide change payment method when there is no one added as default
