@@ -30,6 +30,7 @@
 <script>
 import { mapGetters } from "vuex";
 export default {
+  middleware: ["redirectIfGuest"],
   computed: {
     ...mapGetters({
       empty: "cart/empty",

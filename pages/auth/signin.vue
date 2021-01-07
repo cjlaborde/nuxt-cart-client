@@ -43,11 +43,21 @@ export default {
       },
     };
   },
+  middleware: ["redirectIfAuthenticated"],
   methods: {
     async signin() {
       await this.$auth.loginWith("local", {
         data: this.form,
       });
+
+      if (this.$route.query.redirect) {
+        // redirect to the path in the query string
+        // example http://localhost:3000/auth/signin?redirect=%2Forders
+        this.$router.replace(this.$route.query.redirect);
+
+        // return otherwise going to redirect to index as well
+        return;
+      }
 
       // redirect user to home page after they sign in.
       this.$router.replace({

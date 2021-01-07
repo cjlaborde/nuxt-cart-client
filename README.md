@@ -256,3 +256,31 @@ export default {
 3. Select Restart Identity and Cascade
 4. Go to user table and delete gateway_customer_id
 5. Hide change payment method when there is no one added as default
+
+### Client authentication middleware
+1. Nuxt comes with is on middleware `nuxt-cart-client/node_modules/@nuxtjs/auth/lib/core/middleware.js`
+2. When you try to access `http://localhost:3000/orders` you get error unless you loggin.
+3. To fix this you can add `middleware: ["auth"]` to the component.
+4. So that when you try to access `http://localhost:3000/orders` you get redirected to login page `http://localhost:3000/login`
+5. Problem is we have our login page in `http://localhost:3000/auth/signin`
+6. So we going to create our own custom middleware
+7. `nuxt-cart-client/middleware` and create middleware for `middleware: ["redirectIfGuest"]`
+8. Now if you try to access `http://localhost:3000/orders` which has middleware  
+9. You will be redirected to login page with 
+10. the query `http://localhost:3000/auth/signin?redirect=%2Forders`
+11. %2F = /
+12. Now after sign in we want to modify the singin.vue so that it redirect back to the page in query above.
+13. Now we add `middleware: ["redirectIfGuest"]` every place we want authenticated to be required.
+14. Create middleware called redirectIfAuthenticated.js
+15. When user tries to go to http://localhost:3000/auth/signin 
+16. and they already logged in, redirect them to index page
+
+
+
+
+
+
+
+
+
+

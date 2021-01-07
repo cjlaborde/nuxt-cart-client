@@ -35,6 +35,9 @@ export default {
       orders: [],
     };
   },
+
+  middleware: ["redirectIfGuest"],
+
   async asyncData({ app }) {
     let response = await app.$axios.$get("orders");
 

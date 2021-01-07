@@ -114,6 +114,8 @@ export default {
     };
   },
 
+  middleware: ["redirectIfGuest"],
+
   watch: {
     "form.address_id"(addressId) {
       this.getShippingMethodsForAddress(addressId).then(() => {
