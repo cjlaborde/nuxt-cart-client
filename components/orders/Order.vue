@@ -34,15 +34,15 @@
 <script>
 import OrderStatusPaymentFailed from "@/components/orders/statuses/OrderStatusPaymentFailed";
 import OrderStatusPending from "@/components/orders/statuses/OrderStatusPending";
-// import OrderStatusProcessing from "@/components/orders/statuses/OrderStatusProcessing";
-// import OrderStatusCompleted from "@/components/orders/statuses/OrderStatusCompleted";
+import OrderStatusProcessing from "@/components/orders/statuses/OrderStatusProcessing";
+import OrderStatusCompleted from "@/components/orders/statuses/OrderStatusCompleted";
 
 export default {
   components: {
     payment_failed: OrderStatusPaymentFailed,
     pending: OrderStatusPending,
-    // processing: OrderStatusProcessing,
-    // completed: OrderStatusCompleted,
+    processing: OrderStatusProcessing,
+    completed: OrderStatusCompleted,
   },
   data() {
     return {
